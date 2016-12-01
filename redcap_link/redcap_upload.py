@@ -5,7 +5,7 @@
 
 import sys
 import argparse
-import get_api_key as gapi
+from .get_api_key import get_api_key
 import json
 from collections import OrderedDict
 import redcap
@@ -30,7 +30,7 @@ def redcap_upload(project_name, json_filename, ini_filename):
 
     try:
         jfilep = open(json_filename, 'rt')
-    except OSError:
+    except IOError:
         print('unable to open JSON file: {f}'.format(f=json_filename))
         sys.exit(1)
 
@@ -42,13 +42,14 @@ def redcap_upload(project_name, json_filename, ini_filename):
 
     # ~~~~~~~~~~~~~  read API keys from config file ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    api_token = gapi.get_api_key(ini_filename, project_name)
+    api_token = get_api_key(ini_filename, project_name)
 
     if api_token == '000':
         print('Cannot find API key in INI file for the project name specified!')
         sys.exit(1)
 
-    print('api_token=',api_token)
+    print('api_token=', api_token)
+
     # ~~~~~~~~~~~~~  connect to Redcap project  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     api_url = 'http://redcapint.tsi.wfubmc.edu/redcap_int/api/'
@@ -92,7 +93,7 @@ if __name__ == "__main__":
                         help="JSON file to upload")
     parser.add_argument("--inifile", type=str,
                         help="file containing Redcap project API keys",
-                        default=os.path.abspath(os.path.join(redcap_path,'upcap.ini')))
+                        default=os.path.abspath(os.path.join(redcap_path, 'upcap.ini')))
 
     args = parser.parse_args()
 

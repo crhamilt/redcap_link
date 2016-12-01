@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-#  redcapcheck:  download all records like the one in the specified JSON file
+#  redcap_check:  download all records like the one in the specified JSON file
 # CAHamilton  10/24/16
 
 import sys
 import argparse
 import json
-import get_api_key as gapi
+from .get_api_key import get_api_key
 import pandas as pd
 from collections import OrderedDict
 from io import StringIO
@@ -37,7 +37,7 @@ def redcap_check(project_name, json_filename, ini_filename):
 
     # ~~~~~~~~~~~~~  read API keys from config file ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    api_token = gapi.get_api_key(ini_filename, project_name)
+    api_token = get_api_key(ini_filename, project_name)
 
     if api_token == '000':
         print('Cannot find API key in INI file for the project name specified!')
