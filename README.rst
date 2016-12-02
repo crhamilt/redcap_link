@@ -8,17 +8,16 @@ redcap_upload
 
 Upload JSON file of analysis results to Redcap
 
-usage::
+usage:
 
-
-    as a function:
+    as a function::
+    
       import redcap_upload as rcu
       rcu.redcap_upload('Project Name','JSON file','INI file')
 
-    or from bash:
+    or from bash::
+    
       python redcap_upload.py 'ProjectName' 'JSON file' 'INI file'
-
-
 
     where 'Project Name' is one of :  CENC, Issues, CAHtest1 (until others are added)
    
@@ -38,7 +37,6 @@ usage::
         "mt_wmlesions_std": "0.073"
        }
 
-
     and 'INI file' contains the API keys for Redcap projects (optional argument)
 
 redcap_check
@@ -46,15 +44,16 @@ redcap_check
 
 Download all records in Redcap that match the one in a supplied JSON file
 
-usage::
+usage:
 
-    as a function:
+    as a function::
+    
       import redcap_check as rcc
       rcc.redcap_check 'ProjectName' 'JSON file' 'INI file'
 
-    or from bash:
+    or from bash::
+    
       python redcap_check.py 'ProjectName' 'JSON file' 'INI file'
-
 
 where arguments are the same as for redcap_upload
     
