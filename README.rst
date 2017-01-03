@@ -44,7 +44,7 @@ usage::
 redcap_check
 ------------
 
-Download all records in Redcap that match the one in a supplied JSON file
+Download all records in Redcap that match the ones in a supplied JSON file
 
 usage::
 
@@ -56,7 +56,7 @@ usage::
       python redcap_check.py 'ProjectName' 'JSON file' 'INI file'
 
 
-where arguments are the same as for redcap_upload
+    where arguments are the same as for redcap_upload
     
 All records like those in the input JSON file will be dumped to
 a new CSV file with ".dump.csv" appended to the name of the input file

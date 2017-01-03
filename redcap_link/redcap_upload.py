@@ -5,12 +5,14 @@
 
 import sys
 import argparse
-from .get_api_key import get_api_key
 import json
 from collections import OrderedDict
 import redcap
 import os
 
+# add current dir to path so get_api_key.py is found
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+import get_api_key
 
 def redcap_upload(project_name, json_filename, ini_filename):
     """
@@ -42,7 +44,7 @@ def redcap_upload(project_name, json_filename, ini_filename):
 
     # ~~~~~~~~~~~~~  read API keys from config file ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    api_token = get_api_key(ini_filename, project_name)
+    api_token = get_api_key.get_api_key(ini_filename, project_name)
 
     if api_token == '000':
         print('Cannot find API key in INI file for the project name specified!')
